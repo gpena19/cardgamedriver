@@ -1,7 +1,7 @@
 # Code Review - CTIS 310 Card Game Project
 
 ## What this is:
-This is a code review for the card game project with Blackjack and Lamarckian Poker. I checked if the code works, matches the instructions, and if anything can be improved or breaks.
+This is a code review for the card game project with Blackjack and Lamarckian Poker.
 
 ---
 
@@ -22,7 +22,6 @@ This is a code review for the card game project with Blackjack and Lamarckian Po
 - compareTo works fine and checks rank then suit  
 
 Things to fix maybe:  
-- Theres no comments (Javadoc), should probabbly add those  
 - The TODO in compareTo can be removed and replaced with a real summary
 
 ---
@@ -33,9 +32,7 @@ Things to fix maybe:
 - getDeck(), clear(), and size() are all there  
 
 Suggestions:  
-- deal() and pick() could crash if the deck is empty or index is out of bounds  
-- Could use some short comments on what each method does  
-- Shuffle works, but you could maybe use Collections.shuffle() (not a must)
+- deal() and pick() could crash if the deck is empty or index is out of bounds   
 
 ---
 
@@ -58,7 +55,6 @@ Minor things:
 What could be better:  
 - Add checks in case the deck runs out of cards  
 - Maybe use constantss like PLAYER_LIMIT = 16 instead of magic numbers  
-- Javadoc would help explain whats going on
 
 ---
 
@@ -85,16 +81,15 @@ Other suggestions:
 
 # LamarckianPoker.java
 
-- Does something creative with the card swapping, pool, discard  
+- Does something with the card swapping, pool, discard  
 - Game ends once both players have at least 7 cards  
 
 Main issue:  
-- It sometimes crashes during turn() when a hand is empty (covered earlier)
+- It sometimes crashes during turn() when a hand is empty
 
 Other notes:  
 - Some repeated code in turn() could be made into a helper method  
-- Magic numbers like 4 and 7 should be constants  
-- Javadoc or even just regular comments would help explain whats going on  
+- Magic numbers like 4 and 7 should be constants   
 - Logic overall makes sense but can get a little jumbled in longer turns
 
 ---
