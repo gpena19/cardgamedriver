@@ -1,0 +1,107 @@
+# Code Review - CTIS 310 Card Game Project
+
+## What this is:
+This is a code review for the card game project with Blackjack and Lamarckian Poker. I checked if the code works, matches the instructions, and if anything can be improved or breaks.
+
+---
+
+# Files I Reviewed:
+- Card.java  
+- Deck.java  
+- Hand.java  
+- Blackjack.java  
+- CardGameDriver.java  
+- LamarckianPoker.java
+
+---
+
+# Card.java
+
+- The enums for Suit and Rank are there  
+- You can make a random card or a specific one  
+- compareTo works fine and checks rank then suit  
+
+Things to fix maybe:  
+- Theres no comments (Javadoc), should probabbly add those  
+- The TODO in compareTo can be removed and replaced with a real summary
+
+---
+
+# Deck.java
+
+- Builds the full deck, shuffles it, deals and picks cards  
+- getDeck(), clear(), and size() are all there  
+
+Suggestions:  
+- deal() and pick() could crash if the deck is empty or index is out of bounds  
+- Could use some short comments on what each method does  
+- Shuffle works, but you could maybe use Collections.shuffle() (not a must)
+
+---
+
+# Hand.java
+
+- Can add, remove, reset, and get cards  
+- Blackjack value is calculated right, with Aces being 11 or 1  
+
+Minor things:  
+- No index check in getCard(), which could crash the game if used wrong  
+- StringBuilder in toString() might be better but not a huge deal
+
+---
+
+# Blackjack.java
+
+- Follows the rules: player hits until 16, dealer until 17  
+- Deals two cards to each, works fine  
+
+What could be better:  
+- Add checks in case the deck runs out of cards  
+- Maybe use constantss like PLAYER_LIMIT = 16 instead of magic numbers  
+- Javadoc would help explain whats going on
+
+---
+
+# CardGameDriver.java
+
+- Runs 10,000 Blackjack games and counts dealer wins, player wins, and pushes  
+- Also runs a game of Lamarckian Poker  
+
+Problems:  
+- It crashes if one of the hands is empty in LamarckianPoker:  
+Exception in thread "main" java.lang.IllegalArgumentException: bound must be positive
+
+yaml
+Copy
+Edit
+
+Fix:  
+- Just add a check in turn() to make sure the hand isn’t empty before doing rand.nextInt(size)
+
+Other suggestions:  
+- Split the Blackjack and LamarckianPoker into their own driver files — having both in one is kinda messy and confuzing
+
+---
+
+# LamarckianPoker.java
+
+- Does something creative with the card swapping, pool, discard  
+- Game ends once both players have at least 7 cards  
+
+Main issue:  
+- It sometimes crashes during turn() when a hand is empty (covered earlier)
+
+Other notes:  
+- Some repeated code in turn() could be made into a helper method  
+- Magic numbers like 4 and 7 should be constants  
+- Javadoc or even just regular comments would help explain whats going on  
+- Logic overall makes sense but can get a little jumbled in longer turns
+
+---
+
+# Summary / Final Thoughts
+
+- The project does what the instructions asked  
+- Blackjack works fine and LamarckianPoker mostly does too (except that crash)  
+- Just needs some guard checks, maybe a bit more orginization  
+- Splitting the two games into separate drivers would really help clean it up  
